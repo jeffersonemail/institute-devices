@@ -4,7 +4,10 @@ var router = express.Router();
 const db = require("../db/db");
 
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.json({
+    status: 200,
+    message: "OK"
+  });
 });
 
 module.exports = router;
