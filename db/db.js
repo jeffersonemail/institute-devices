@@ -14,7 +14,10 @@ async function selectDevices(){
     return await getData(query);
 }
 
-
+async function selectDeviceById(id){
+    var query = "SELECT device.Id, device.Category, category.Name, device.Color, device.partNumber FROM device JOIN category ON category.Id = device.category WHERE device.Id = " + id;
+    return await getData(query);
+}
 
 async function getData(query) {
     const conn = await connect();
@@ -22,4 +25,4 @@ async function getData(query) {
     return rows;
 }
 
-module.exports = {selectDevices}
+module.exports = {selectDevices, selectDeviceById}
