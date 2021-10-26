@@ -15,7 +15,12 @@ async function selectDevices(){
 }
 
 async function selectDeviceById(id){
-    var query = "SELECT device.Id, device.Category, category.Name, device.Color, device.partNumber FROM device JOIN category ON category.Id = device.category WHERE device.Id = " + id;
+    var query = `SELECT device.Id, device.Category, category.Name, device.Color, device.partNumber FROM device JOIN category ON category.Id = device.category WHERE device.Id = ${id}`;
+    return await getData(query);
+}
+
+async function removeDeviceById(id){
+    var query = `DELETE FROM device WHERE Id = ${id}`;
     return await getData(query);
 }
 
@@ -25,4 +30,4 @@ async function getData(query) {
     return rows;
 }
 
-module.exports = {selectDevices, selectDeviceById}
+module.exports = {selectDevices, selectDeviceById, removeDeviceById}
