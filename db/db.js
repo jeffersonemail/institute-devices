@@ -10,8 +10,15 @@ async function connect(){
 }
 
 async function selectDevices(){
+    var query = "SELECT device.Id, device.Category, category.Name, device.Color, device.partNumber FROM device JOIN category ON category.Id = device.category";
+    return await getData(query);
+}
+
+
+
+async function getData(query) {
     const conn = await connect();
-    const [rows] = await conn.query('SELECT * FROM devices;');
+    const [rows] = await conn.query(query);
     return rows;
 }
 
