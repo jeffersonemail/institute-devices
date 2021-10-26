@@ -7,10 +7,11 @@ router.get('/', async function(req, res, next) {
   try {
     const devices = await devicesRepositories.selectDevices();
 
-    if (devices.length == 0) { formatResponse(204, "No devices found.", res); }
-
-    formatResponse(200, devices, res);
-
+    if (devices.length == 0) { 
+      formatResponse(204, "No devices found.", res); 
+    } else {
+      formatResponse(200, devices, res);
+    }
   } catch (err) { formatResponse(err.status ?? 404, err.message ?? "Unknown error.", res); }
 });
 
@@ -19,10 +20,11 @@ router.get('/:id', async function(req, res, next) {
     const id = req.params['id'];
     const device = await devicesRepositories.selectDeviceById(id);
     
-    if (device.length == 0) { formatResponse(204, `No device found with Id ${id}.`, res); }
-    
-    formatResponse(200, device[0], res);
-    
+    if (device.length == 0) { 
+      formatResponse(204, `No device found with Id ${id}.`, res); 
+    } else {
+      formatResponse(200, device[0], res);
+    }
   } catch (err) { formatResponse(err.status ?? 404, err.message ?? "Unknown error.", res); }
 });
 
