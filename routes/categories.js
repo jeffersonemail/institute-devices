@@ -68,10 +68,7 @@ router.delete('/:id', async function(req, res, next) {
 })
 
 function formatResponse(status, message, res) {
-  res.status(status).json({
-    status,
-    message
-  });
+  res.status(status).json(message);
 }
 
 function isJson(object) {
